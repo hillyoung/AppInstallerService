@@ -62,14 +62,19 @@ class TestResource(object):
         res.append_header('Access-Control-Allow-Origin','*')
 
 
-class TestAPI(object):
+
+class TestAPI(object):#测试webservice接口
     def on_get(self, req, res):
         res.append_header('Access-Control-Allow-Origin','*')
         # res.headers = {'Access-Control-Allow-Origin':'*','Access-Control-Allow-Methods':'OPTIONS,HEAD,GET,POST','Access-Control-Allow-Headers':'x-requested-with, content-type, authorization'}
         # res.headers[] = 
         # res.headers[] = 
         # res.headers[] = 
-        res.body = json.dumps({'test':'success'})
+
+        resData = {'result':'success'}
+        resData['params'] = req.params
+
+        res.body = json.dumps(resData)
         res.status = falcon.HTTP_200 # This is the default status
 app = falcon.API()
 
